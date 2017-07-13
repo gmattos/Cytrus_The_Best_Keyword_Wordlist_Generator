@@ -97,11 +97,14 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 			word2 = word[:z]
 			tmp = clnw(words, word2)
 			word2 = fixw(tmp,word2,z)
-			nwords.append(word2)
-			nwords = list(set(nwords))
-			nwords.sort(key=len, reverse=True)
-			z = z+1
-			wn = wn-1
+			if len(word2) < mini:
+				break
+			else:
+				nwords.append(word2)
+				nwords = list(set(nwords))
+				nwords.sort(key=len, reverse=True)
+				z = z+1
+				wn = wn-1
 
 #print(sorted(nwords))
 
