@@ -9,7 +9,7 @@ After this, these combinatios are triplicated of yours uppercased, lowercased an
 
 Parameters model: [maximum passwords size] [n-strings...] 
 
-Example :~$ sudo python3 14 car 18 02 pythonic kali pwnd
+Example:                                :~$ sudo python3 8 14 car 18 02 pythonic kali pwnd
 
 I limited the maximum passwords size possibility to 24, by security purposes on my testing time, be welcome to change this or every else.
 
