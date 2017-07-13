@@ -82,7 +82,6 @@ print("Loading...")
 cw = 0
 cutd = 0
 nwords = []
-tmp = ""
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
 	if len(word) <= maxi:
@@ -138,7 +137,7 @@ f2.close()
 os.remove("temp.txt")
 
 print('\n' + "Finished!")
-print("\n Rough Combinations Words Count: " + str(cw))
+print("\n Rough Combinations Words Count: " + str(cw*(maxi-mini)))
 
 print("\n Total Pure Combinations: " + str(len(nwords)))
 
