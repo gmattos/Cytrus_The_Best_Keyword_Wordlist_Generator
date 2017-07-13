@@ -54,16 +54,19 @@ def fixw(rst, plvr,total):
 		
 		return fix
 	
-maxi = sys.argv[1]
-
+mini = sys.argv[1]
+print(mini)
+maxi = sys.argv[2]
+print(maxi)
 if int(maxi) > 24:
 	print(">>For secure, the max of range of string was setup as 24<<")
 	print("Old value: " + maxi)
 	maxi = 24
 
 maxi = int(maxi)
-	
-words = sys.argv[2:]
+mini = int(mini)	
+
+words = sys.argv[3:]
 words.sort()
 words.sort(key=len, reverse=True)
 print(words)
@@ -88,18 +91,18 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 			
 	else:
 				#Permutations, slicing of the big ones
-	
-		word = word[:maxi]
-			
-		tmp = clnw(words, word)
+		z = mini
 		
-		wn = wn-1
+		while z <= maxi:
 		
-		
-		word = fixw(tmp,word,maxi)
-		nwords.append(word)
-		nwords = list(set(nwords))
-		
+			word2 = word[:z]
+			tmp = clnw(words, word2)
+			word2 = fixw(tmp,word2,z)
+			nwords.append(word2)
+			nwords = list(set(nwords))
+			nwords.sort(key=len, reverse=True)
+			z = z+1
+			wn = wn-1
 
 #print(sorted(nwords))
 
