@@ -70,7 +70,6 @@ words.sort(key=len, reverse=True)
 wn = len(words)
 print(words)
 print("Inserted Words: " + str(len(words)))
-eql = ""
 cw = 0
 cutd = 0
 nwords = []
