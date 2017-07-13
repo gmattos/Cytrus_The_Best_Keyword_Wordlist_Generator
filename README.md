@@ -1,5 +1,5 @@
 # MR_RBT_PW_Gen
-A simple python script which creates dumb passwords WordList by keywords.
+A smart python script which creates dumb passwords WordList by keywords.
 
 If you watched the first season of Mr Robot you know what I mean LOL. 
 
@@ -7,9 +7,9 @@ My script receives keywords and creates all possible iterations between them, bu
 
 After this, these combinatios are triplicated of yours uppercased, lowercased and titled variations.  
 
-Parameters model: [maximum passwords size] [n-strings...] 
+Parameters model: [minimum passwords size] [maximum passwords size] [n-strings...] 
 
-Example:                                :~$ sudo python3 8 14 car 18 02 pythonic kali pwnd
+Example:                                 :~$ sudo python3 8 14 car 18 02 pythonic kali pwnd
 
 I limited the maximum passwords size possibility to 24, by security purposes on my testing time, be welcome to change this or every else.
 
