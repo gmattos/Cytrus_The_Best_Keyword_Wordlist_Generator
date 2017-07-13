@@ -66,10 +66,16 @@ maxi = int(maxi)
 words = sys.argv[2:]
 words.sort()
 words.sort(key=len, reverse=True)
-
-wn = len(words)
 print(words)
+wn = len(words)
+i=0
+
+while i != wn:
+	words[i] = words[i].title()
+	i=i+1
+
 print("Inserted Words: " + str(len(words)))
+print("Loading...")
 cw = 0
 cutd = 0
 nwords = []
@@ -95,7 +101,7 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		nwords = list(set(nwords))
 		
 
-print(sorted(nwords))
+#print(sorted(nwords))
 
 temp = "temp.txt"
 
@@ -116,7 +122,7 @@ f2 = open(outp, "w") #output file
 
 for line in f:
 	line = line.strip()
-	n_line = line.title() #title change
+	n_line = line #title change
 	f2.write(n_line + '\n')
 	n_line = line.lower() #lower change
 	f2.write(n_line + '\n')
@@ -128,7 +134,7 @@ f2.close()
 
 os.remove("temp.txt")
 
-
+print('\n' + "Finished!")
 print("\n Rough Combinations Words Count: " + str(cw))
 
 print("\n Total Pure Combinations: " + str(len(nwords)))
