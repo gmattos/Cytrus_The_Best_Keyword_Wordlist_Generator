@@ -69,7 +69,7 @@ mini = int(mini)
 words = sys.argv[3:]
 words.sort()
 words.sort(key=len, reverse=True)
-#print(words)
+print(words)
 wn = len(words)
 i=0
 
@@ -85,9 +85,13 @@ nwords = []
 eql = ""
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
+	print(cw)
+	sys.stdout.write("\033[F") #back to previous line
+	sys.stdout.write("\033[K") #clear line
 	if len(word) <= maxi:
 		nwords.append(word)
 		nwords = list(set(nwords))
+		
 			
 	else:
 				#Permutations, slicing of the big ones
@@ -97,27 +101,29 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		
 			word2 = word[:z]
 			#print(word2)
-			if eql == word2:
+			#if eql == word2:
 			
+				#break
+			
+			#else:
+			
+			tmp = clnw(words, word2)
+			word2 = fixw(tmp,word2,z)
+			if len(word2) < mini:
 				break
-			
 			else:
-			
-				tmp = clnw(words, word2)
-				word2 = fixw(tmp,word2,z)
-				if len(word2) < mini:
-					break
-				else:
-					eql = word2
-					nwords.append(word2)
-					nwords = list(set(nwords))
-					nwords.sort(key=len, reverse=True)
-					z = z+1
-					wn = wn-1
-					#print(word2)
+					#eql = word2
+				nwords.append(word2)
+				nwords = list(set(nwords))
+					
+				z = z+1
+				wn = wn-1
+				#print(word2)
+				#sys.stdout.write("\033[F") #back to previous line
+				#sys.stdout.write("\033[K") #clear line
 
 #print(sorted(nwords))
-
+nwords.sort(key=len, reverse=True)
 temp = "temp.txt"
 
 f = open(temp, "w")
