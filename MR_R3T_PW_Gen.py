@@ -19,7 +19,7 @@
 #  
 #  
 
-import sys, os
+import sys, os, time
 import itertools
 
 
@@ -79,6 +79,7 @@ while i != wn:
 
 print("Inserted Words: " + str(len(words)))
 print("Loading...")
+print(time.strftime("%H:%M:%S"))
 cw = 0
 cutd = 0
 nwords = []
@@ -156,6 +157,7 @@ f2.close()
 os.remove("temp.txt")
 
 print('\n' + "Finished!")
+print(time.strftime("%H:%M:%S"))
 print("\n Rough Combinations Words Count: " + str(cw*(maxi-mini)))
 
 print("\n Total Pure Combinations: " + str(len(nwords)))
