@@ -19,8 +19,7 @@
 #  
 #  
 
-import sys, os, time
-import itertools
+import sys, os, time, itertools
 
 
 def clnw(modelos, palavra):
@@ -55,9 +54,7 @@ def fixw(rst, plvr,total):
 		return fix
 	
 mini = sys.argv[1]
-#print(mini)
 maxi = sys.argv[2]
-#print(maxi)
 if int(maxi) > 24:
 	print(">>For secure, the max of range of string was setup as 24<<")
 	print("Old value: " + maxi)
@@ -78,8 +75,8 @@ while i != wn:
 	i=i+1
 
 print("Inserted Words: " + str(len(words)))
-print("Loading...")
-print(time.strftime("%H:%M:%S"))
+print("Started at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
+print('\n' + "Loading... The job can delay several hours if more than 12 words as input! But the results will worth it =D")
 cw = 0
 cutd = 0
 nwords = []
@@ -101,13 +98,7 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		while z <= maxi:
 		
 			word2 = word[:z]
-			#print(word2)
-			#if eql == word2:
-			
-				#break
-			
-			#else:
-			
+						
 			tmp = clnw(words, word2)
 			word2 = fixw(tmp,word2,z)
 			if len(word2) < mini:
@@ -156,10 +147,10 @@ f2.close()
 
 os.remove("temp.txt")
 
-print('\n' + "Finished!")
-print(time.strftime("%H:%M:%S"))
-print("\n Rough Combinations Words Count: " + str(cw*(maxi-mini)))
+print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
+print()
+print("\n Combinations Proccessed: " + str(cw*(maxi-mini)))
 
-print("\n Total Pure Combinations: " + str(len(nwords)))
+print("\n Total Results of Slicing and Verification Methods: " + str(len(nwords)))
 
 print("\n With UPPERED lowered and Titled words: " + str(len(nwords)*3))
