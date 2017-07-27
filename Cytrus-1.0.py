@@ -2,7 +2,7 @@
 #!python3
 # -*- coding: utf-8 -*-
 #
-#  MR_R3T_PW_Gen.py
+#  Cytrus-1.0.py
 #  
 #  Copyright 2017 gmattos <gmattos@protonmail.com>
 #  
@@ -77,20 +77,33 @@ while i != wn:
 print("Inserted Words: " + str(len(words)))
 print("Started at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print('\n' + "Loading... The job can delay several hours if more than 12 words as input! But the results will worth it =D")
+
+temp = "temp.txt"
+f = open(temp, "w")
+
+outp = "MR_R3T_PW_Gen.txt"
+f2 = open(outp, "w")
+
 cw = 0
 cutd = 0
 nwords = []
 eql = ""
+a = 10000
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
 	print(cw)
 	sys.stdout.write("\033[F") #back to previous line
 	sys.stdout.write("\033[K") #clear line
 	if len(word) <= maxi:
-		nwords.append(word)
-		nwords = list(set(nwords))
-		
-			
+		w2 = word
+		w2 = w2.strip()
+		n_w2 = w2 #title change
+		f2.write(n_w2 + '\n')
+		n_w2 = w2.lower() #lower change
+		f2.write(n_w2 + '\n')
+		n_w2 = w2.upper() #upper change
+		f2.write(n_w2 + '\n')
+					
 	else:
 				#Permutations, slicing of the big ones
 		z = mini
@@ -101,56 +114,58 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 						
 			tmp = clnw(words, word2)
 			word2 = fixw(tmp,word2,z)
-			if len(word2) < mini:
-				break
-			else:
-					#eql = word2
-				nwords.append(word2)
-				nwords = list(set(nwords))
-					
-				z = z+1
-				wn = wn-1
-				#print(word2)
-				#sys.stdout.write("\033[F") #back to previous line
-				#sys.stdout.write("\033[K") #clear line
+			
+			f = open(temp, "a")	
+			z = z+1
+			
+			wn = wn-1
+			w = word2
+			w = w.strip()
+			n_w = w #title change
+			f.write(n_w + '\n')
+			n_w = w.lower() #lower change
+			f.write(n_w + '\n')
+			n_w = w.upper() #upper change
+			f.write(n_w + '\n')
+			
+	if cw == a:
+		tw = 0
+		f.close()
+		f = open(temp, "r")
+		for vcb in f:
+			if len(vcb)-1 >= mini:
+				nwords.append(vcb)
+		nwords = sorted((set(nwords)))
+		nwords.sort(key=len, reverse=True)
+		a = a+a
+		open(temp, 'w').close()
+		f2 = open(outp, 'a')
+		for item in nwords:
+			f2.write(item)
+			tw = tw+1
+		nwords = []
+		open(temp, 'w').close()
+	
 
-#print(sorted(nwords))
-nwords.sort(key=len, reverse=True)
-temp = "temp.txt"
-
-f = open(temp, "w")
-
-for w in nwords:
-	w = w.strip()
-	f.write(w + '\n')
-
-f.close()
-
-inp = "temp.txt" #input file
-outp =  "MR_R3T_PW_Gen.txt"
-
-i = -1
-f = open(inp, "r") #input file
-f2 = open(outp, "w") #output file
-
-for line in f:
-	line = line.strip()
-	n_line = line #title change
-	f2.write(n_line + '\n')
-	n_line = line.lower() #lower change
-	f2.write(n_line + '\n')
-	n_line = line.upper() #upper change
-	f2.write(n_line + '\n')
-
-f.close()
+if cw < a:
+	tw = 0
+	f = open(temp, "r")
+	for vcb2 in f:
+		if len(vcb2)-1 >= mini:
+			nwords.append(vcb2)
+	nwords = sorted((set(nwords)))
+	nwords.sort(key=len, reverse=True)
+	for item2 in nwords:
+		f2.write(item2)
+		tw = tw+1
+	
 f2.close()
 
 os.remove("temp.txt")
-
 print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print()
 print("\n Combinations Proccessed: " + str(cw*(maxi-mini)))
 
-print("\n Total Results of Slicing and Verification Methods: " + str(len(nwords)))
+print("\n Total Results of Slicing and Verification Methods: " + str(tw))
 
-print("\n With UPPERED lowered and Titled words: " + str(len(nwords)*3))
+print("\n With UPPERED lowered and Titled words: " + str(tw*3))
