@@ -3,7 +3,7 @@ A smart python script which creates dumb passwords WordList by social keywords.
 
 If you watched the first season of Mr Robot you know what I mean LOL. 
 
-My script receives keywords and creates all possible iterations between them, but with a length limit and don't lost characters resulted from slice() processing.
+My script receives keywords and creates all possible iterations between them, but with a length limit and don't lost characters resulted from slice processing.
 
 After this, these combinatios are triplicated of yours uppercased, lowercased and titled variations.  
 
