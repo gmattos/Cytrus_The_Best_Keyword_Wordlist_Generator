@@ -1,4 +1,4 @@
-# MR_RBT_PW_Gen
+# Cytrus-1.0_Wordlist_Generator
 A smart python script which creates dumb passwords WordList by social keywords.
 
 If you watched the first season of Mr Robot you know what I mean LOL. 
