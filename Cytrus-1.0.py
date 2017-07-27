@@ -81,7 +81,7 @@ print('\n' + "Loading... The job can delay several hours if more than 12 words a
 temp = "temp.txt"
 f = open(temp, "w")
 
-outp = "MR_R3T_PW_Gen.txt"
+outp = "Cytrus_WL.txt"
 f2 = open(outp, "w")
 
 cw = 0
