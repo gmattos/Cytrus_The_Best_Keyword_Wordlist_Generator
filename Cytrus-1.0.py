@@ -81,17 +81,16 @@ print('\n' + "Loading... The job can delay several hours if more than 12 words a
 temp = "temp.txt"
 f = open(temp, "w")
 
-outp = "Cytrus_WL.txt"
+outp = "t_Cytrus_WL.txt"
 f2 = open(outp, "w")
 
 cw = 0
-cutd = 0
 nwords = []
-eql = ""
-a = 10000
+c = 1000
+tw = 0
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
-	print(cw)
+	print(str(cw*(maxi-mini)))
 	sys.stdout.write("\033[F") #back to previous line
 	sys.stdout.write("\033[K") #clear line
 	if len(word) <= maxi:
@@ -103,7 +102,7 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		f2.write(n_w2 + '\n')
 		n_w2 = w2.upper() #upper change
 		f2.write(n_w2 + '\n')
-					
+		print(bolacha)			
 	else:
 				#Permutations, slicing of the big ones
 		z = mini
@@ -127,38 +126,63 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 			f.write(n_w + '\n')
 			n_w = w.upper() #upper change
 			f.write(n_w + '\n')
-			
-	if cw == a:
-		tw = 0
+	
+	
+	if cw == c:
+		
 		f.close()
 		f = open(temp, "r")
 		for vcb in f:
 			if len(vcb)-1 >= mini:
 				nwords.append(vcb)
 		nwords = sorted((set(nwords)))
-		nwords.sort(key=len, reverse=True)
-		a = a+a
+		#nwords.sort(key=len, reverse=True)
+		c = c+c
 		open(temp, 'w').close()
 		f2 = open(outp, 'a')
 		for item in nwords:
 			f2.write(item)
-			tw = tw+1
+			#tw = tw+1
 		nwords = []
 		open(temp, 'w').close()
-	
+		f2.close
 
-if cw < a:
-	tw = 0
+if cw < c:
+	
+	f.close
 	f = open(temp, "r")
 	for vcb2 in f:
 		if len(vcb2)-1 >= mini:
 			nwords.append(vcb2)
 	nwords = sorted((set(nwords)))
-	nwords.sort(key=len, reverse=True)
+	#nwords.sort(key=len, reverse=True)
 	for item2 in nwords:
 		f2.write(item2)
-		tw = tw+1
+		#tw = tw+1
+	f.close
+
+f.close	
+f2.close()
 	
+print("\nSorting... Please Wait. ")
+print("Started sorted at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
+f2 = open(outp, "r")
+
+fwords = []
+
+for line in f2:
+	fwords.append(line)
+open(outp, 'w').close()
+fwords = sorted((set(fwords)))
+fwords.sort(key=len, reverse=True)
+
+
+f2 = open(outp, 'a')
+
+for fitem in fwords:
+	f2.write(fitem)
+	tw = tw+1
+
 f2.close()
 
 os.remove("temp.txt")
@@ -166,6 +190,4 @@ print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime(
 print()
 print("\n Combinations Proccessed: " + str(cw*(maxi-mini)))
 
-print("\n Total Results of Slicing and Verification Methods: " + str(tw))
-
-print("\n With UPPERED lowered and Titled words: " + str(tw*3))
+print("\n Total Results after processing: " + str(tw))
