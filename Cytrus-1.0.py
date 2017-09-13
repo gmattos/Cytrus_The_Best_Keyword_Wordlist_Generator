@@ -78,91 +78,121 @@ print("Inserted Words: " + str(len(words)))
 print("Started at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print('\n' + "Loading... The job can delay several hours if more than 12 words as input! But the results will worth it =D")
 
-temp = "temp.txt"
-f = open(temp, "w")
-
-outp = "Cytrus_WL.txt"
+outp = "t_Cytrus_WL.txt"
 f2 = open(outp, "w")
 
 cw = 0
+pcw = 0
 nwords = []
-c = 1000
-tw = 0
+thnklr1 = []
+thnklr2 = []
+thnklr4 = []
+thnklr5 = []
+thnklr6 = []
+c = 100 #verificar isso <><><><> (era o ==)
+b = 0
+#tw = 0
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
 	print(str(cw*(maxi-mini)))
 	sys.stdout.write("\033[F") #back to previous line
 	sys.stdout.write("\033[K") #clear line
-	if len(word) <= maxi:
-		w2 = word
-		w2 = w2.strip()
-		n_w2 = w2 #title change
-		f2.write(n_w2 + '\n')
-		n_w2 = w2.lower() #lower change
-		f2.write(n_w2 + '\n')
-		n_w2 = w2.upper() #upper change
-		f2.write(n_w2 + '\n')
-		print(bolacha)			
-	else:
-				#Permutations, slicing of the big ones
-		z = mini
+	thnklr1 = []
+	thnklr4 = []
+	z = mini
+	b = b+1
+	while z <= maxi:
 		
-		while z <= maxi:
+		thnklr1.append(word[:z])
+		z = z+1
+	thnklr3 = set(thnklr1).symmetric_difference(thnklr2)
+	#print(thnklr1)
+	#print("\n")
+	#print(thnklr2)
+	#print("\n")
+	#print(thnklr3)
+	#print("\n")
+	#print(thnklr4)
+	#print("\n")
+	#print(thnklr5)
+	#print("\n")
+	#print(thnklr6)
+	#print("\n")
+	
+	for word2 in thnklr3:
 		
-			word2 = word[:z]
-						
-			tmp = clnw(words, word2)
-			word2 = fixw(tmp,word2,z)
-			
-			f = open(temp, "a")	
-			z = z+1
-			
+		#print(word2)					
+		
+		
+		
+		tmp = clnw(words, word2)
+		word2 = fixw(tmp,word2,z)
+		#abc="WanGuiVan"
+		#if word2 == abc:
+			#print("bazinga"+"\n")
+		
+		thnklr4.append(word2)
+		
+	thnklr6 = set(thnklr4).symmetric_difference(thnklr5)
+		
+	for word2 in thnklr6:
+		
+		
+		
+		if len(word2) >= mini:
+		
+			#z = z+1
 			wn = wn-1
 			w = word2
 			w = w.strip()
+			#if not(w in nwords):
+				#print(w)
 			n_w = w #title change
-			f.write(n_w + '\n')
+			nwords.append(n_w+"\n")
 			n_w = w.lower() #lower change
-			f.write(n_w + '\n')
+			nwords.append(n_w+"\n")
 			n_w = w.upper() #upper change
-			f.write(n_w + '\n')
+			nwords.append(n_w+"\n")
+			pcw = pcw+1
+			#b = pcw
+			#print(pcw)
+	#thnklr4.sort
+	thnklr5 = list(thnklr4)
 	
+	thnklr2 = list(thnklr1)		
+	#thnklr1 = [] não dá certo
 	
-	if cw == c:
-		
-		f.close()
-		f = open(temp, "r")
-		for vcb in f:
-			if len(vcb)-1 >= mini:
-				nwords.append(vcb)
-		nwords = sorted((set(nwords)))
-		#nwords.sort(key=len, reverse=True)
-		c = c+c
-		open(temp, 'w').close()
+	#print(nwords)
+	#print(pcw)
+	#print(c)
+	#print(pcw)
+	
+	#==> O erro está abaixo
+	
+	if pcw < c:
+	
+		#nwords = sorted((set(nwords)))
+	
+		for item2 in nwords:
+			f2.write(item2)
+		nwords = []
+	
+	elif pcw >= c :
+		#print("fuscao")
+		#nwords = sorted((set(nwords)))
+		c = pcw+c
 		f2 = open(outp, 'a')
 		for item in nwords:
 			f2.write(item)
-			#tw = tw+1
 		nwords = []
-		open(temp, 'w').close()
 		f2.close
 
-if cw < c:
-	
-	f.close
-	f = open(temp, "r")
-	for vcb2 in f:
-		if len(vcb2)-1 >= mini:
-			nwords.append(vcb2)
-	nwords = sorted((set(nwords)))
-	#nwords.sort(key=len, reverse=True)
-	for item2 in nwords:
-		f2.write(item2)
-		#tw = tw+1
-	f.close
 
-f.close	
+	
+
 f2.close()
+
+nwords = []
 	
 print("\nSorting... Please Wait. ")
 print("Started sorted at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
@@ -181,13 +211,13 @@ f2 = open(outp, 'a')
 
 for fitem in fwords:
 	f2.write(fitem)
-	tw = tw+1
+	#tw = tw+1
 
 f2.close()
 
-os.remove("temp.txt")
+print(pcw)
 print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print()
 print("\n Combinations Proccessed: " + str(cw*(maxi-mini)))
 
-print("\n Total Results after processing: " + str(tw))
+print("\n Total Results after processing: " + str(pcw*3))
