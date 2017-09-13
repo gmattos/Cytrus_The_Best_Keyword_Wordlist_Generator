@@ -121,16 +121,9 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 	
 	for word2 in thnklr3:
 		
-		#print(word2)					
-		
-		
-		
 		tmp = clnw(words, word2)
 		word2 = fixw(tmp,word2,z)
-		#abc="WanGuiVan"
-		#if word2 == abc:
-			#print("bazinga"+"\n")
-		
+				
 		thnklr4.append(word2)
 		
 	thnklr6 = set(thnklr4).symmetric_difference(thnklr5)
@@ -154,21 +147,11 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 			n_w = w.upper() #upper change
 			nwords.append(n_w+"\n")
 			pcw = pcw+1
-			#b = pcw
-			#print(pcw)
-	#thnklr4.sort
+			
 	thnklr5 = list(thnklr4)
 	
 	thnklr2 = list(thnklr1)		
-	#thnklr1 = [] não dá certo
-	
-	#print(nwords)
-	#print(pcw)
-	#print(c)
-	#print(pcw)
-	
-	#==> O erro está abaixo
-	
+		
 	if pcw < c:
 	
 		#nwords = sorted((set(nwords)))
@@ -178,7 +161,7 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		nwords = []
 	
 	elif pcw >= c :
-		#print("fuscao")
+		
 		#nwords = sorted((set(nwords)))
 		c = pcw+c
 		f2 = open(outp, 'a')
@@ -186,9 +169,6 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 			f2.write(item)
 		nwords = []
 		f2.close
-
-
-	
 
 f2.close()
 
