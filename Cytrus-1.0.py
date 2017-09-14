@@ -89,9 +89,9 @@ thnklr2 = []
 thnklr4 = []
 thnklr5 = []
 thnklr6 = []
-c = 100 #verificar isso <><><><> (era o ==)
+c = 100 
 b = 0
-#tw = 0
+tw = 0
 for word in map(''.join, itertools.permutations(words, r=wn)):
 	cw = cw+1
 	print(str(cw*(maxi-mini)))
@@ -106,19 +106,7 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		thnklr1.append(word[:z])
 		z = z+1
 	thnklr3 = set(thnklr1).symmetric_difference(thnklr2)
-	#print(thnklr1)
-	#print("\n")
-	#print(thnklr2)
-	#print("\n")
-	#print(thnklr3)
-	#print("\n")
-	#print(thnklr4)
-	#print("\n")
-	#print(thnklr5)
-	#print("\n")
-	#print(thnklr6)
-	#print("\n")
-	
+		
 	for word2 in thnklr3:
 		
 		tmp = clnw(words, word2)
@@ -134,12 +122,9 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		
 		if len(word2) >= mini:
 		
-			#z = z+1
 			wn = wn-1
 			w = word2
 			w = w.strip()
-			#if not(w in nwords):
-				#print(w)
 			n_w = w #title change
 			nwords.append(n_w+"\n")
 			n_w = w.lower() #lower change
@@ -154,15 +139,12 @@ for word in map(''.join, itertools.permutations(words, r=wn)):
 		
 	if pcw < c:
 	
-		#nwords = sorted((set(nwords)))
-	
 		for item2 in nwords:
 			f2.write(item2)
 		nwords = []
 	
 	elif pcw >= c :
 		
-		#nwords = sorted((set(nwords)))
 		c = pcw+c
 		f2 = open(outp, 'a')
 		for item in nwords:
@@ -191,13 +173,12 @@ f2 = open(outp, 'a')
 
 for fitem in fwords:
 	f2.write(fitem)
-	#tw = tw+1
+	tw = tw+1
 
 f2.close()
 
-print(pcw)
 print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print()
 print("\n Combinations Proccessed: " + str(cw*(maxi-mini)))
 
-print("\n Total Results after processing: " + str(pcw*3))
+print("\n Total Results after processing: " + str(tw))
