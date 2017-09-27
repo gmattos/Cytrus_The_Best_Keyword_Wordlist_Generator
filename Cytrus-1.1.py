@@ -2,7 +2,7 @@
 #!python3
 # -*- coding: utf-8 -*-
 #
-#  Cytrus-1.0.py
+#  Cytrus-1.1.py
 #  
 #  Copyright 2017 gmattos <gmattos@protonmail.com>
 #  
@@ -21,7 +21,21 @@
 
 import sys, os, time, itertools
 
-
+def fcount(lent):
+		
+	w = 3
+	c = 2
+	i = 2
+	
+	while i != lent:
+		c = c * w 
+		w = w+1
+		i = i+1
+		
+	
+	return c
+	
+	
 def clnw(modelos, palavra):
 	
 	for a in modelos:
@@ -68,6 +82,10 @@ words.sort()
 words.sort(key=len, reverse=True)
 print(words)
 wn = len(words)
+
+print("\nIterations will be processed: ")
+print(int(fcount(wn)))
+
 i=0
 
 while i != wn:
@@ -176,6 +194,10 @@ for fitem in fwords:
 	tw = tw+1
 
 f2.close()
+
+if maxi-mini == 0:
+	mini = 0
+	maxi = 1
 
 print('\n' + "Finished at " + time.strftime("%H:%M:%S") + " - " + time.strftime("%d/%m/%Y"))
 print()
